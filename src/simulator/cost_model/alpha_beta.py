@@ -7,7 +7,7 @@ Beta (β) - represents the inverse bandwidth cost to send each word of the messa
 
 """
 
-def step_time(alpha: float, chunk_bytes: int, bandwidth_bytes_s: float) -> float:
+def step_time(alpha: float, chunk_bytes: float, bandwidth_bytes_s: float) -> float:
     """
     For communication, before any useful byte lands in other processes, you pay for: 
     software initiating the transfer, the handshake, and the signal physically propagating down the wire. 
@@ -25,7 +25,7 @@ def step_time(alpha: float, chunk_bytes: int, bandwidth_bytes_s: float) -> float
     return alpha + chunk_bytes * beta
 
 
-def bandwidth_util(useful_bytes: int, bandwidth_bytes_s: float, total_time_s: float) -> float:
+def bandwidth_util(useful_bytes: float, bandwidth_bytes_s: float, total_time_s: float) -> float:
     """
     Once we know how long a whole collective took, we want to know how well it used the link.
     The link can move 'B' bytes every second at full speed, so over 'total_time_s' seconds the most
