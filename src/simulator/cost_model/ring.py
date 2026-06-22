@@ -18,7 +18,7 @@ from simulator.cost_model.alpha_beta import step_time, bandwidth_util
 from simulator.report import CostReport
 
 
-def ring_phase(n_nodes: int, tensor_bytes: int, alpha: float,
+def ring_phase(n_nodes: int, tensor_bytes: float, alpha: float,
                 bandwidth_bytes_s: float, n_steps: int) -> CostReport:
     """Cost of one N-1-step ring phase (reduce-scatter or all-gather).
 
@@ -46,7 +46,7 @@ def ring_phase(n_nodes: int, tensor_bytes: int, alpha: float,
                       bandwidth_util=util, steps=n_steps)
 
 
-def reduce_scatter(n_nodes: int, tensor_bytes: int, alpha: float,
+def reduce_scatter(n_nodes: int, tensor_bytes: float, alpha: float,
                    bandwidth_bytes_s: float) -> CostReport:
     """Ring reduce-scatter: N-1 steps, the reduction inward.
 
@@ -58,7 +58,7 @@ def reduce_scatter(n_nodes: int, tensor_bytes: int, alpha: float,
                        n_steps=max(n_nodes - 1, 0))
 
 
-def all_gather(n_nodes: int, tensor_bytes: int, alpha: float,
+def all_gather(n_nodes: int, tensor_bytes: float, alpha: float,
                bandwidth_bytes_s: float) -> CostReport:
     """Ring all-gather: N-1 steps, the broadcast outward.
 
@@ -70,7 +70,7 @@ def all_gather(n_nodes: int, tensor_bytes: int, alpha: float,
                        n_steps=max(n_nodes - 1, 0))
 
 
-def all_reduce(n_nodes: int, tensor_bytes: int, alpha: float,
+def all_reduce(n_nodes: int, tensor_bytes: float, alpha: float,
                bandwidth_bytes_s: float) -> CostReport:
     """Ring all-reduce = reduce-scatter then all-gather = 2(N-1) steps.
 
