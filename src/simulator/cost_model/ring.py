@@ -11,7 +11,7 @@ which is why ring is the production choice for large tensors.
 all_reduce is built by composing the two phases, not a hard-coded formula. Cost
 is in plain (alpha, bandwidth) floats, same shape as alpha_beta. Full derivation
 traced through a row-parallel matmul with real partial sums:
-https://medium.com/@varuntej07/why-all-reduce-is-reduce-scatter-all-gather-and-why-is-the-cost-2-n-1-not-n-1-229f3cd73d25
+https://varuntej.dev/blog/why-all-reduce-is-reduce-scatter-plus-all-gather
 """
 
 from simulator.cost_model.alpha_beta import step_time, bandwidth_util
