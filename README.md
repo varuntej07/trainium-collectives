@@ -47,10 +47,11 @@ That is a model result, not measured truth yet. The NeuronLink and EFA latency a
 | Ring reduce-scatter, all-gather, and all-reduce | Implemented |
 | Hierarchical ring all-reduce | Implemented |
 | Single-tree reduce, broadcast, and all-reduce | Implemented |
-| Recursive doubling | Scaffold only |
+| Recursive doubling | Not started |
 | Trn1/Trn2 topology module | Not added yet |
-| Trainium / Neuron Explorer measurements | Scaffold only |
-| Host-side C++ all-reduce and pybind11 module | Scaffold only |
+| Trainium / Neuron Explorer measurements | Not started |
+| Host-side C++ all-reduce and pybind11 module | Not started |
+| Property tests for the claims above | Implemented |
 | Model-vs-measurement validation | Not started |
 
 ## Quick start
@@ -76,7 +77,8 @@ source .venv/bin/activate
 Install the package in editable mode:
 
 ```bash
-python -m pip install -e .
+python -m pip install -e ".[dev]"
+python -m pytest
 ```
 
 Then call a cost model directly:
@@ -122,14 +124,11 @@ The hardware values above are deliberately plain inputs, not baked into the algo
 ```text
 src/simulator/cost_model/   Python analytical models
 src/simulator/report.py     Shared CostReport returned by every model
-examples/                   Crossover and training-cost experiments
-measurement/                Trainium and host-side measurement scaffolds
-cpp/                        C++ cost core and real all-reduce scaffolds
-docs/LAB_NOTES.md           Running record of results, dead ends, and corrections
-goal.md                     The north star and scope for the project
+tests/                      Property tests for the claims made above
+pyproject.toml              Editable install, Python 3.10 or newer, no runtime deps
 ```
 
-Start with [`goal.md`](goal.md) for the claim I am trying to prove. Read [`docs/LAB_NOTES.md`](docs/LAB_NOTES.md) for the honest version of the work: assumptions, wrong turns, and results that did not match the original hypothesis.
+The docstrings are the lab notes. Each model file carries its own derivation and the limitation it is aware of, and `tests/` holds every claim this README makes to account.
 
 ## Validation plan
 
